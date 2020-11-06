@@ -1,10 +1,10 @@
 
-    #include "p18f4550.inc"
+  #include "p18f4550.inc"
 
 SUMANDO EQU 0X1F
 TAREA EQU 0X79
 TAREADOS EQU 0X07
-    ORG 0
+  ORG 0
 
 MAIN
   ; NOt de ambas cantidades, suma, resta multiplicación
@@ -24,5 +24,14 @@ MAIN
   ;RESTAR menor de mayor
     MOVLW TAREADOS
     SUBLW TAREA
+  ;XOR
+    MOVLW TAREA
+    XORLW TAREADOS
+  ;OR
+    MOVLW TAREA
+    IORLW TAREADOS
+  ;AND
+    MOVLW TAREA
+    ANDLW TAREADOS
   GOTO MAIN
   END
