@@ -1,0 +1,40 @@
+;Este programa es para encender el led conectado en RC0 solamente cuando el switch esté conectado y en RA3 esté cerrado
+
+#include "p18f4550.inc"
+
+ORG .0
+#DEFINE SW1 PORTA,3,0
+#DEFINE SW2 PORTA,2,0
+
+INICIO
+  CLRF PROTA,0
+  MOVLW B'00001100'
+  MOVWF TRISA,0
+  MOVLW .15
+  MOVWF ADCON1,0
+  MOVLW .7
+  MOVWF CMCON,0
+  CLRF PORTC,0
+  CLRG TRISC,0
+
+LEER_RA3
+  BTFSS SW1 ;¿ESTÁS CERRADO RA3? ¿VALES 1?
+    GOTO LEER_RA2_NO ;NO ESTÁ CERRADO, NO VALE 1
+    GOTO LEER_RA2_SI  ;SÍ ESTÁ CERRADO, SÍ VALE 1
+LEER_RA2_NO
+  BTFSS SW2
+    GOTO NO
+    GOTO SI
+
+LEER_RA2_SI
+  BTFSS SW2
+    GOTO SI
+    GOTO NO
+NO
+  BCF PORTC,0,0 ;BIT 0 DEL PUERTOC=0
+  GOTO LEER_RA3
+
+SI 
+  BSF PORTC,0,0
+  GOTO LEER_RA3
+END
