@@ -63,6 +63,7 @@
 
 ; CONFIG7H
   CONFIG  EBTRB = OFF           ; Boot Block Table Read Protection bit (Boot block (000000-0007FFh) is not protected from table reads executed in other blocks)
+  
 #DEFINE DATO H'03' ;PONER ETIQUETAS A CARACTERES, ESTO LEE H'03'
 ;DATO EQU H'03' ;ESTO LEE SOLO EL 03
 #DEFINE QUINCE H'0F'
