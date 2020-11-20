@@ -1,3 +1,6 @@
+
+
+
 ;Sumador, restador y multiplicador de 2 cantidades de 3 bits
 ; Ambas cantidades ingresan por portA
 ; El resultado se visualiza en leds por portb
@@ -90,16 +93,16 @@ MAIN
   MOVFF PORTA,DIGITOUNO ;PA=W (0||1||2||4)
   MOVF DIGITOUNO,W,1
   ANDWF MASK,W,1 ;Enmascarar a wreg, solo dejé a ra3, RA2 y RA1
-  RRNCF DIGITOUNO,W,0 ;PUEDE SER 0 O W EN DESTINATION
+  RRNCF WREG,F,0 ;PUEDE SER 0 O W EN DESTINATION
   MOVFF WREG,DIGITOUNO
   MOVLW B'01110000'
   MOVWF MASK,1 ;aquí oculto el DIGITO 1
   MOVFF PORTA,DIGITODOS
   MOVF DIGITODOS,W,1
   ANDWF MASK,W,1 ;Enmascarar a wreg, solo dejé a ra3, RA2 y RA1
-  SWAPF WREG,W,0 ;PUEDE SER 0 O W EN DESTINATION
+  SWAPF WREG,F,0 ;PUEDE SER 0 O W EN DESTINATION
   MOVFF WREG,DIGITODOS
-  MULWF DIGITOUNO,W,1 ;W+DATO=W
+  MULWF DIGITOUNO,1 ;W+DATO=W
   MOVFF PRODL,PORTB ;PORTB TIENE EL RESULTADO
   GOTO MAIN
   END
