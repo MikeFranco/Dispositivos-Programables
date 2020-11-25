@@ -1,0 +1,14 @@
+#include "pic18f4550.inc"
+
+ORG .0
+
+INICIO
+CLRF TRISD,0
+CLRF PORTD,0
+
+ON_OFF
+  BSF PORTD,1,0
+  
+  BCF PORTD,1,0
+  GOTO ON_OFF
+  END
