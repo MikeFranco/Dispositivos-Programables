@@ -81,17 +81,8 @@ MOVLW B'11010111' ;Movemos a el num. 199 a W
 MOVWF T0CON ;Movemos de W a T0CON el num. 199, que hace lo siguiente:  
     ;Enciende el timer, timer de 8 bits, reloj interno, flanco de bajada (si tiene cont. de eventos), sin preescaler, preescaler 1:256
 
- 
 MAIN
-    
-    MOVLW B'10000000'
-    MOVWF PORTC 
-    CALL DELAY 
-    
-    MOVLW B'01000000'
-    MOVWF PORTC 
-    CALL DELAY 
-    
+    ;Primero
     MOVLW B'10000000' ;Bit 7 encendido, lo pasamos a W
     MOVWF PORTB ;Movemos el bit 7 encendido de W a PORTD
     CALL DELAY ;Lllamamos al retardo
@@ -128,12 +119,45 @@ MAIN
     MOVWF PORTB
     CALL DELAY
 
+		;Segundo
+
     MOVLW B'00000000'
     MOVWF PORTB
     CALL DELAY
 
-   
-    
+		MOVLW B'10000001'
+    MOVWF PORTB
+    CALL DELAY
+
+		MOVLW B'01000010'
+    MOVWF PORTB
+    CALL DELAY
+
+		MOVLW B'00100100'
+    MOVWF PORTB
+    CALL DELAY
+
+		MOVLW B'00011000'
+    MOVWF PORTB
+    CALL DELAY
+
+		MOVLW B'00000000'
+    MOVWF PORTB
+    CALL DELAY
+
+		;tercero
+
+		MOVLW B'01010101'
+    MOVWF PORTB
+    CALL DELAY
+
+		;cuarto
+
+		MOVLW B'10101010'
+    MOVWF PORTB
+    CALL DELAY
+
+
     
 DELAY 
     CLRF TMR0L ;Limpiamos el registro TMR0L 
