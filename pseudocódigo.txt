@@ -1,0 +1,131 @@
+Class ATM {
+  //Variables
+  public int currentStep = 0; //Menajeador de las pestañas del ATM
+  public int accountNumber; //Número de cuenta del usuario
+  public int pin; //Pin de la cuenta del usuario
+  public int amountOfMoneyByAccount = -1; // Cantidad de dinero del usuario en su cuenta
+  public int total100OfMoney = 200000; // Cantidad de dinero inicial al día en billetes de 100
+  public int total200OfMoney = 300000; // Cantidad de dinero inicial al día en billetes de 200
+  public int total500OfMoney = 500000; // Cantidad de dinero inicial al día en billetes de 500
+
+  //Métodos:
+  public void withdraw(int amount){ //Transacción de retiro
+    int atmTotalMoney = suma de todo el dinero que hay en el ATM;
+
+    Si el dinero del usuario es mayor al amount y la cantidad de dinero del ATM es mayor al monto a retirar
+      entonces:
+      boolean hacerTransaccion = true;
+        Haz:
+          Si el monto/500 el residuo es 0
+            entonces:
+              total500OfMoney -= amount; 
+              amount -= 500;
+              this.amountOfMoneyByAccount -= 500;
+            Si no: el monto/200 el residuo es 0
+              total200OfMoney -= amount;
+              amount -= 200;
+              this.amountOfMoneyByAccount -= 200;
+            Si no: el monto/100 el residuo es 0
+            total100OfMoney -= amount;
+            amount -= 100;
+            this.amountOfMoneyByAccount -= 100;
+          Fin condicional
+
+          Si el monto es menor o igual a 0
+            entonces: se deja de hacer la transaccion
+        Mientras hacerTransaccion es verdadero;
+
+
+  }
+
+  public void deposit(int amount){
+    int atmTotalMoney = suma de todo el dinero que hay en el ATM;
+
+    Si el dinero del usuario es mayor al amount y la cantidad de dinero del ATM es mayor al monto a retirar
+      entonces:
+      boolean hacerTransaccion = true;
+        Haz:
+          Si el monto/500 el residuo es 0
+            entonces:
+              total500OfMoney += amount; 
+              amount -= 500;
+              this.amountOfMoneyByAccount += 500;
+            Si no: el monto/200 el residuo es 0
+              total200OfMoney += amount;
+              amount -= 200;
+              this.amountOfMoneyByAccount += 200;
+            Si no: el monto/100 el residuo es 0
+            total100OfMoney += amount;
+            amount -= 100;
+            this.amountOfMoneyByAccount += 100;
+          Fin condicional
+
+          Si el monto es menor o igual a 0
+            entonces: se deja de hacer la transaccion
+        Mientras hacerTransaccion es verdadero;
+
+  }
+  public boolean verifyAccount(){
+    Si accountNumber es igual a 12345 y el pin es igual a 12345 y el amountOfMoneyByAccount es igual a -1
+      entonces: 
+        amountOfMoneyByAccount es igual a 12000
+        regresa true;
+        Si no: accountNumber es igual a 12364 y el pin es igual a 12364 y el amountOfMoneyByAccount es igual a -1
+        entonces: 
+          amountOfMoneyByAccount es igual a 150000
+          regresa true;
+          Si no: accountNumber es igual a 78901 y el pin es igual a 12345 y el amountOfMoneyByAccount es igual a -1
+          entonces: 
+            amountOfMoneyByAccount es igual a 500000
+            regresa true;
+    Si no: regresa false;
+  }
+
+  public int getSaldo(){
+    regresa this.amountOfMoneyByAccount;
+  }
+}
+
+//Diseño
+  getCurrentStep(){
+
+    switch(){
+      Si el currentStep del atm es 0 y el usuario presiona el botón continuar:
+        Se obtiene la cuenta capturada y se cambia a la pantalla para solicitar pin
+        break;
+      Si el currentStep del atm es 1 y el usuario presiona el botón continuar:
+        Se obtiene el pin capturado
+        break;
+      Si el currentStep del atm es 2 y el usuario presiona el botón continuar:
+        Se presenta la pantalla para escoger una Transacción
+        break;
+      Si el currentStep del atm es 3 y el usuario presiona el botón continuar:
+        Se muestra la pantalla del saldo del usuario
+        break;
+      Si el currentStep del atm es 4 y el usuario presiona el botón continuar:
+        Se muestra la pantalla de depositar
+        break;
+      Si el currentStep del atm es 5 y el usuario presiona el botón continuar:
+        Se muestra la pantalla de retiro
+        break;
+    }
+    Si atm.VerifyAccount y el atm.currentStep == 2
+      entonces: 
+        se cambia a la pantalla principal para escoger Transacción
+      Si no:
+        Se manda pantalla de error y la primera pantalla para capturar de nuevo cuenta y pin
+  }
+  private void doTransaction(int amount){
+    if(atm.currentStep == 4){ //deposito
+      atm.deposit(amount);//se realiza el depósito
+      atm.currentStep = 3;
+      getCurrentStep();
+    } else if(atm.currentStep == 5){//retiro
+        atm.withdraw(amount);//se realiza la transaccion
+        atm.currentStep = 3;
+      getCurrentStep();
+    }
+  }
+    
+
+
